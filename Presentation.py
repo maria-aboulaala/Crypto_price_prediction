@@ -66,7 +66,7 @@ with st.form(key="my_form"):
     st.form_submit_button("Simuler")
 st.subheader('graphique :chart:')
 #display the data
-data = yf.download(tickers)
+data = yf.download(tickers, period = "1y",)
 dataframe = st.write(data['Close'])
 
 with st.expander("Interpretation:"):
@@ -137,6 +137,7 @@ plot_pacf(diff_data, lags=30)
 ocp = plt.show()
 st.pyplot(ocp)
 
+#-------
 import statsmodels.api as sm
 import numpy as np
 train_size = int(len(diff_data) * 0.8)
@@ -160,16 +161,17 @@ for p in range(p_max+1):
                 
 
 
-st.write(best_order)
+#st.write(best_order)
 
-st.write('Best ARIMA{} model - AIC:{}'.format(best_order, best_aic))
-
+#st.write('Best ARIMA{} model - AIC:{}'.format(best_order, best_aic))
+#st.write("best arima model", best_order)
 # Ajuster le modèle ARIMA(p,q) avec les données d'entraînement
-model = ARIMA(train, order=best_order)
-results = model.fit()
+#model = ARIMA(train, order=best_order)
+#results = model.fit()
 
 # Afficher un résumé des résultats du modèle ajusté
-st.write(results.summary())
+
+#st.write(results.summary())
 
 
 
