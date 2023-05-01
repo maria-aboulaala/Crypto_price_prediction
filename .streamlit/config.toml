@@ -4,8 +4,8 @@ showPyplotGlobalUse = false
 [browser]
 gatherUsageStats = false
 
-#[theme]
-#primaryColor="#a4d0a4"
-#backgroundColor="#fff8d6"
-#secondaryBackgroundColor="#f7e1ae"
-#textColor="#41644a"
+[theme]
+primaryColor="#a4d0a4"
+backgroundColor="#fff8d6"
+secondaryBackgroundColor="#f7e1ae"
+textColor="#41644a"
