@@ -4,6 +4,14 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+streamlit 
+pandas 
+numpy 
+yfinance
+datetime  
+matplotlib.pyplot 
+statsmodels
+arch
 
 [dev-packages]
 streamlit 
