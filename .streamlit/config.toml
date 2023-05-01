@@ -1,0 +1,6 @@
+[deprecation]
+showPyplotGlobalUse = false
+
+[browser]
+gatherUsageStats = false
+

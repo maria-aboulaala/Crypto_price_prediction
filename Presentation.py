@@ -5,6 +5,10 @@ import yfinance as yf
 from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 from statsmodels.graphics.tsaplots import plot_acf
+from statsmodels.tsa.stattools import adfuller
+from arch.unitroot import PhillipsPerron
+
+
 
 st.set_page_config(page_icon=":game_die:", page_title="Aboulaala Projet")
 
@@ -34,12 +38,7 @@ st.markdown(
 st.subheader(' Presentation:')
 st.markdown(
     """
-    >La régression logistique est un type d'analyse statistique qui permet de prédire une variable cible catégorique (comme un gain ou une perte) en fonction d'autres variables indépendantes. Elle peut être utilisée pour l'optimisation d'un portefeuille de crypto-monnaies en prédisant la performance future des crypto-monnaies et en ajustant la répartition des actifs dans le portefeuille en conséquence.
-    Pour utiliser la régression logistique pour l'optimisation d'un portefeuille de crypto-monnaies, il faut d'abord:
-    - :one: Collecter des données sur les prix historiques, les volumes de négociation et d'autres indicateurs pertinents pour les crypto-monnaies que l'on souhaite inclure dans le portefeuille.
-    - :two: Entraîner le modèle de régression logistique qui prédit la performance future des crypto-monnaies a partir des donnees precedente.
-    - :three: Une fois que le modèle est entraîné, il peut être utilisé pour répartir les actifs dans le portefeuille de manière à maximiser les rendements et minimiser les risques.
-    Par exemple, on peut utiliser les prédictions du modèle pour investir davantage dans les crypto-monnaies qui sont prévues pour performer bien, tandis que les crypto-monnaies qui sont prévues pour performer moins bien peuvent être réduites ou éliminées du portefeuille.
+    >v
 
    """
 )
@@ -89,6 +88,88 @@ info = data['Close'].describe()
 df_info = pd.DataFrame(info)
 st.write(df_info)
 
+#correlograme
 fig2 = plot_acf(data['Close'], lags=50)
-plt.show()
 st.pyplot(fig2)
+
+#
+resultat = adfuller(data['Close'])
+#Affichage du résultat      
+st.write('Statistique de test  ', resultat[0])
+st.write('La P-value ', resultat[1])
+st.write("Valeurs critiques :", 
+         )
+for key, value in resultat[4].items():
+    st.write(f"\t{key}:" ,value)
+
+#-----
+st.subheader("Phillips person")
+pp_test = PhillipsPerron(data['Close'])
+st.write('Statistique de test :', pp_test.stat)
+st.write('P-value :', pp_test.pvalue)
+st.write('Valeurs critiques :')
+for key, value in pp_test.critical_values.items():
+    st.write(f"\t{key}:" ,value)
+
+#-------
+# Appliquer une différenciation à la série chronologique du coin
+diff_data = data['Close'].diff().dropna()
+
+# Afficher un graphique de la série chronologique différenciée
+fig, ax = plt.subplots()
+ax.plot(diff_data.index, diff_data, label='diff_BTC')
+ax.set_title('Série chronologique différenciée')
+ax.set_xlabel('jours')
+ax.set_ylabel('diff_BTC')
+ax.legend()
+cd = plt.show()
+st.pyplot(cd)
+
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+
+# Graphique d'autocorrélations simples
+plot_acf(diff_data, lags=30)
+ocs = plt.show()
+st.pyplot(ocs)
+
+# Graphique d'autocorrélations partielles
+plot_pacf(diff_data, lags=30)
+ocp = plt.show()
+st.pyplot(ocp)
+
+import statsmodels.api as sm
+import numpy as np
+train_size = int(len(diff_data) * 0.8)
+train, test = diff_data[:train_size], diff_data[train_size:]
+p_max = 4
+q_max = 4
+best_aic = np.inf 
+for p in range(p_max+1):
+    for q in range(q_max+1):
+        try:
+            model = sm.tsa.arima.ARIMA(train, order=(p,1,q))
+            results = model.fit()
+            aic = results.aic
+            if aic < best_aic:
+                best_aic = aic
+                best_order = (p,1,q)
+                
+        except:
+            continue
+
+                
+
+
+st.write(best_order)
+
+st.write('Best ARIMA{} model - AIC:{}'.format(best_order, best_aic))
+
+# Ajuster le modèle ARIMA(p,q) avec les données d'entraînement
+model = ARIMA(train, order=best_order)
+results = model.fit()
+
+# Afficher un résumé des résultats du modèle ajusté
+st.write(results.summary())
+
+
+
