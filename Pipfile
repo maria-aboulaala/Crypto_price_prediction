@@ -6,6 +6,14 @@ name = "pypi"
 [packages]
 
 [dev-packages]
+streamlit 
+pandas 
+numpy 
+yfinance
+datetime  
+matplotlib.pyplot 
+statsmodels
+arch
 
 [requires]
 python_version = "3.10"
