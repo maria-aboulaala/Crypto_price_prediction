@@ -4,24 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-streamlit 
-pandas 
-numpy 
-yfinance
-datetime  
-matplotlib.pyplot 
-statsmodels
-arch
+streamlit = "*"
+pandas = "*"
+numpy = "*"
+yfinance = "*"
+datetime  = "*"
+matplotlib.pyplot = "*"
+statsmodels = "*"
+arch = "*"
 
 [dev-packages]
-streamlit 
-pandas 
-numpy 
-yfinance
-datetime  
-matplotlib.pyplot 
-statsmodels
-arch
+
 
 [requires]
 python_version = "3.10"
