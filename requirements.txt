@@ -1,8 +1,8 @@
- streamlit 
- pandas 
- numpy 
- yfinance 
- datetime  
- matplotlib.pyplot 
- statsmodels
- arch
+streamlit 
+pandas 
+numpy 
+yfinance
+datetime  
+matplotlib.pyplot 
+statsmodels
+arch
