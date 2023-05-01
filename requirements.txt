@@ -1,4 +1,8 @@
-pandas
-numpy
-yfinance
-datetime
+ streamlit 
+ pandas 
+ numpy 
+ yfinance 
+ datetime  
+ matplotlib.pyplot 
+ statsmodels
+ arch
