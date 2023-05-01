@@ -5,7 +5,5 @@ showPyplotGlobalUse = false
 gatherUsageStats = false
 
 [theme]
-primaryColor="#a4d0a4"
-backgroundColor="#fff8d6"
-secondaryBackgroundColor="#f7e1ae"
-textColor="#41644a"
+base="light"
+primaryColor="#263a29"

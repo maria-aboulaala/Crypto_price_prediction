@@ -1,3 +1,4 @@
+#packages
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -52,20 +53,14 @@ st.markdown(
 )
 
 
-
-
-
-
-
-st.subheader('Entrez les parametres: :key: ')
+st.subheader('Choisir une coin: :key: ')
 with st.form(key="my_form"):
-
-
-
     tickers = st.selectbox('Coins', ['BTC-USD', 'ETH-USD', 'XRP-USD', 'BCH-USD','LTC-USD','USDT-USD','LINK-USD','ADA-USD','DOT-USD','BSV-USD','EOS-USD','ATOM-USD','SOL-USD','CRO-USD','XMR-USD'])
     st.form_submit_button("Simuler")
-st.subheader('graphique :chart:')
+
 #display the data
+
+st.subheader('Prix de fermeture:chart:')
 data = yf.download(tickers, period = "1y",)
 dataframe = st.write(data['Close'])
 
@@ -76,6 +71,7 @@ with st.expander("Interpretation:"):
     )
 
 #display the chart
+st.subheader('graphique :chart:')
 st.line_chart(data['Close'], use_container_width=True)
 
 #display hist
@@ -198,9 +194,5 @@ plt.plot(test.index, forecast, label='Prévisions')
 ax.set(title='Prévisions avec le modèle arima')
 st.pyplot(fig)
 
-#[theme]
-#primaryColor="#a4d0a4"
-#backgroundColor="#fff8d6"
-#secondaryBackgroundColor="#f7e1ae"
-#textColor="#41644a"
+
 
