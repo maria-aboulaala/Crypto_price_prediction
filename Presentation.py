@@ -102,7 +102,7 @@ diff_data = data['Close'].diff().dropna()
 
 # Afficher un graphique de la série chronologique différenciée
 fig, ax = plt.subplots()
-ax.plot(diff_data.index, diff_data, label='diff_BTC')
+ax.plot(diff_data.index, diff_data, label='diff')
 ax.set_title('Série chronologique différenciée')
 ax.set_xlabel('jours')
 ax.set_ylabel('diff')
@@ -185,3 +185,4 @@ st.pyplot(fig)
 
 
 
+st.error('On remarque que le modele ARIMA ne donne pas de bon resultats du coup on procede au modele GARCH')

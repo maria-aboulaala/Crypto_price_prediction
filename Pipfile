@@ -12,6 +12,8 @@ datetime  = "*"
 matplotlib.pyplot = "*"
 statsmodels = "*"
 arch = "*"
+scikit-learn = "*"
+
 
 [dev-packages]
 
