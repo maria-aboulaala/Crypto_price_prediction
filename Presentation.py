@@ -11,11 +11,12 @@ from arch.unitroot import PhillipsPerron
 
 
 
-st.set_page_config(page_icon=":game_die:", page_title="Aboulaala Projet")
+st.set_page_config(page_icon=":game_die:", page_title="serie temporelle")
 
 st.image('ensa.png',caption=None, width=250, use_column_width=None, clamp = False, channels="RGB", output_format="auto")
+st.success('Notre interface interactive de prédiction du prix des cryptomonnaies repose sur l analyse des séries temporelles. Son objectif est de vous fournir des informations prédictives sur les tendances des prix des cryptomonnaies ainsi que les interpretations des resultats.')
 
-st.title('Projet de Séries Temporelles :bar_chart:')
+st.title('Prédiction du prix des cryptomonnaies à l aide de l analyse de séries temporelles :bar_chart:')
 
 
 
@@ -23,8 +24,8 @@ with st.expander("Presentation"):
 
     st.markdown(
     """
-> Cette presentation est faite dans le cadre du projet 
-- Realiser par : Aboulaala Maria | Aberhouche Anass 
+> Cette presentation est faite dans le cadre du projet de prédiction du prix des cryptomonnaies à l aide de l analyse de séries temporelles
+- Realiser par : Aboulaala Maria | Aberhouch Anass | Bari Said
 - Encadrer par : Madame Hadiri Soukaina
    """
 )
@@ -36,21 +37,16 @@ st.markdown(
    """
 )
 
-st.subheader(' Presentation:')
+st.subheader(' Presentation: :one:')
 st.markdown(
     """
-    >v
+    >Dans ce projet, nous nous intéressons à l'étude des données de crypto-monnaies. Les crypto-monnaies, telles que Bitcoin, Ethereum et Litecoin, ont connu une popularité croissante ces dernières années en tant qu'actifs financiers numériques. L'analyse des séries temporelles de ces crypto-monnaies peut nous aider à comprendre leurs tendances et leur volatilité, ce qui peut être utile pour les investisseurs et les traders.
+
+    >L'objectif de ce projet est d'appliquer des techniques d'analyse de série temporelle pour modéliser et prévoir les prix des crypto-monnaies. Nous allons explorer les différentes étapes du processus d'analyse, de la préparation des données à l'estimation des modèles, en passant par le diagnostic et la validation des modèles.
 
    """
 )
 
-st.header(':one:  ')
-st.markdown(
-    """
-     **Definition**
-    > gsgufyge
-   """
-)
 
 
 st.subheader('Choisir une coin: :key: ')
@@ -64,21 +60,14 @@ st.subheader('Prix de fermeture:chart:')
 data = yf.download(tickers, period = "1y",)
 dataframe = st.write(data['Close'])
 
-with st.expander("Interpretation:"):
-    st.markdown("""
-    none
-                """
-    )
 
-#display the chart
+
+#graphique
 st.subheader('graphique :chart:')
 st.line_chart(data['Close'], use_container_width=True)
 
-#display hist
-fig, ax = plt.subplots()
-ax.hist(data['Close'], bins=30)
-st.pyplot(fig)
 
+st.subheader('Description :chart:')
 #description
 info = data['Close'].describe()
 df_info = pd.DataFrame(info)
@@ -116,7 +105,7 @@ fig, ax = plt.subplots()
 ax.plot(diff_data.index, diff_data, label='diff_BTC')
 ax.set_title('Série chronologique différenciée')
 ax.set_xlabel('jours')
-ax.set_ylabel('diff_BTC')
+ax.set_ylabel('diff')
 ax.legend()
 cd = plt.show()
 st.pyplot(cd)
