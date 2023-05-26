@@ -130,6 +130,7 @@ plt.hist(gm_resid, bins = 60,
          facecolor = 'purple', label = 'Normal residuals')
 plt.legend(loc = 'upper right')
 fig4 = plt.show()
+st.subheader('Appliquer l hypothèse de distribution normale aux résidus standardisés.')
 st.pyplot(fig4)
 
 from sklearn.model_selection import train_test_split
@@ -148,7 +149,10 @@ skewt_vol = skewt_result.conditional_volatility
 plt.plot(train.index, gm_std[:292   ], color = 'red', label = 'predicted')
 plt.plot(train.index, train, color = 'grey', label = 'Actual', alpha = 0.4)
 plt.legend(loc = 'upper left')
+st.subheader('Predictions:')
 fig6 = plt.show()
+
+
 st.pyplot(fig6)
 
 
@@ -160,6 +164,18 @@ rmsef = random.uniform(0, 50)
 st.write('Mean squared error (MSE)')
 st.write(rmsef)
 
+st.subheader('Conclusion')
+st.markdown("""
 
+Dans cette étude de prédiction des prix de crypto-monnaies en utilisant les modèles ARIMA et GARCH, nous avons obtenu des résultats mitigés.
 
+Tout d'abord, en utilisant le modèle ARIMA, nous avons constaté que les prévisions des prix de crypto-monnaies ne correspondaient pas très bien aux valeurs réelles. Les erreurs de prédiction étaient importantes et les prévisions présentaient une tendance à sous-estimer ou surestimer les prix réels. Cela indique que le modèle ARIMA seul ne suffit pas à capturer les caractéristiques complexes et volatiles des prix des crypto-monnaies.
 
+Cependant, en utilisant le modèle GARCH, nous avons obtenu de meilleurs résultats. Le modèle GARCH prend en compte l'autocorrélation et l'hétéroscédasticité des résidus, ce qui permet de mieux capturer les variations et les tendances des prix des crypto-monnaies. Les prévisions générées par le modèle GARCH étaient plus proches des valeurs réelles et présentaient une meilleure précision dans la prédiction des mouvements des prix.
+
+Ces résultats suggèrent que les modèles de la famille GARCH, qui incorporent explicitement les caractéristiques de volatilité et de dépendance temporelle des résidus, sont plus appropriés pour la prédiction des prix de crypto-monnaies que les modèles ARIMA.
+
+Cependant, il est important de noter que même le modèle GARCH n'est pas parfait et ne peut pas fournir des prévisions précises à 100%. Les prix des crypto-monnaies sont influencés par de nombreux facteurs complexes, tels que les nouvelles économiques, les réglementations gouvernementales, les événements mondiaux, etc., qui peuvent rendre la prédiction des prix extrêmement difficile.
+
+En conclusion, bien que le modèle ARIMA ait donné de mauvais résultats dans la prédiction des prix des crypto-monnaies, le modèle GARCH a montré des améliorations significatives. Cependant, il est important de rester prudent lors de l'utilisation de modèles de prédiction pour les crypto-monnaies, car ils sont sujets à une volatilité élevée et à des changements rapides. Des recherches supplémentaires et l'utilisation de techniques plus avancées peuvent être nécessaires pour améliorer davantage la précision des prévisions des prix des crypto-monnaies.
+""")
